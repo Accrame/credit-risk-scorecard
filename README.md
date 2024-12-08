@@ -16,7 +16,7 @@ Predicts loan default probability and converts it to a traditional credit score 
 |--------|-------|
 | AUC-ROC | 0.78 |
 | Gini | 0.56 |
-| KS | 0.42 |
+| KS | 0.46 |
 
 Not amazing, but reasonable for 1000 samples with no heavy tuning.
 
