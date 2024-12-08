@@ -1,7 +1,7 @@
 """Preprocessing pipeline — handles encoding, scaling, imputation."""
 
-import numpy as np
-import pandas as pd
+from __future__ import annotations
+
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
@@ -16,8 +16,8 @@ class CreditDataPreprocessor(BaseEstimator, TransformerMixin):
         self.categorical_cols = categorical_cols
         self.numerical_cols = numerical_cols
         self.scale_numerical = scale_numerical
-        self.preprocessor: Optional[ColumnTransformer] = None
-        self.feature_names_: Optional[List[str]] = None
+        self.preprocessor: ColumnTransformer | None = None
+        self.feature_names_: list[str] | None = None
 
     def _infer_column_types(self, X):
         """Guess which columns are categorical vs numerical."""

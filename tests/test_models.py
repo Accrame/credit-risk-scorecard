@@ -32,9 +32,9 @@ class TestCreditRiskTrainer:
         """Test trainer initializes correctly."""
         from src.models.trainer import CreditRiskTrainer
 
-        trainer = CreditRiskTrainer(model_type="xgboost")
-        assert trainer.model_type == "xgboost"
+        trainer = CreditRiskTrainer()
         assert trainer.model is None
+        assert trainer.params is not None
 
     def test_trainer_train(self, train_test_data):
         """Test model training."""
@@ -42,7 +42,7 @@ class TestCreditRiskTrainer:
 
         X_train, X_test, y_train, y_test = train_test_data
 
-        trainer = CreditRiskTrainer(model_type="xgboost")
+        trainer = CreditRiskTrainer()
         trainer.train(X_train, y_train)
 
         assert trainer.model is not None
@@ -53,7 +53,7 @@ class TestCreditRiskTrainer:
 
         X_train, X_test, y_train, y_test = train_test_data
 
-        trainer = CreditRiskTrainer(model_type="xgboost")
+        trainer = CreditRiskTrainer()
         trainer.train(X_train, y_train)
 
         predictions = trainer.predict(X_test)
@@ -67,7 +67,7 @@ class TestCreditRiskTrainer:
 
         X_train, X_test, y_train, y_test = train_test_data
 
-        trainer = CreditRiskTrainer(model_type="xgboost")
+        trainer = CreditRiskTrainer()
         trainer.train(X_train, y_train)
 
         probas = trainer.predict_proba(X_test)
@@ -81,7 +81,7 @@ class TestCreditRiskTrainer:
 
         X_train, X_test, y_train, y_test = train_test_data
 
-        trainer = CreditRiskTrainer(model_type="xgboost")
+        trainer = CreditRiskTrainer()
         trainer.train(X_train, y_train)
         metrics = trainer.evaluate(X_test, y_test)
 
@@ -96,7 +96,7 @@ class TestCreditRiskTrainer:
 
         X, y = sample_data
 
-        trainer = CreditRiskTrainer(model_type="xgboost")
+        trainer = CreditRiskTrainer()
         cv_results = trainer.cross_validate(X, y, n_splits=3)
 
         assert "cv_auc_mean" in cv_results

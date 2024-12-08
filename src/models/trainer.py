@@ -2,7 +2,6 @@
 
 import json
 from pathlib import Path
-from typing import Dict, List, Optional
 
 import joblib
 import numpy as np
@@ -50,7 +49,8 @@ class CreditRiskTrainer:
 
         if X_val is not None and y_val is not None:
             self.model.fit(
-                X_train, y_train,
+                X_train,
+                y_train,
                 eval_set=[(X_val, y_val)],
                 verbose=False,
             )

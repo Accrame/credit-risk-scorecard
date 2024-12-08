@@ -1,5 +1,7 @@
 """Fairness auditing with Fairlearn — checks demographic parity, equalized odds."""
 
+from __future__ import annotations
+
 import numpy as np
 import pandas as pd
 from fairlearn.metrics import (
@@ -18,7 +20,7 @@ class FairnessAuditor:
 
     def __init__(self, sensitive_features):
         self.sensitive_features = sensitive_features
-        self.results: Dict[str, pd.DataFrame] = {}
+        self.results: dict[str, pd.DataFrame] = {}
 
     def audit(self, y_true, y_pred, sensitive_data):
         """Run fairness audit. Returns per-group metrics + disparity measures."""
@@ -100,7 +102,9 @@ class FairnessAuditor:
 
         return results
 
-    def find_fair_threshold(self, y_true, y_proba, sensitive_data, feature, metric="demographic_parity"):
+    def find_fair_threshold(
+        self, y_true, y_proba, sensitive_data, feature, metric="demographic_parity"
+    ):
         """Find per-group thresholds that equalize selection rates.
         TODO: this is a rough approach, could use proper optimization instead."""
         if feature not in sensitive_data.columns:

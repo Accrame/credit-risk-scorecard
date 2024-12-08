@@ -1,6 +1,5 @@
 """Feature engineering — derived features based on credit risk domain knowledge."""
 
-import numpy as np
 import pandas as pd
 
 

@@ -4,6 +4,8 @@ Uses the standard Score = Offset + Factor * ln(odds) formula.
 PDO (Points to Double Odds) controls how spread out the scores are.
 """
 
+from __future__ import annotations
+
 import numpy as np
 import pandas as pd
 
@@ -73,7 +75,7 @@ class ScorecardConverter:
     def analyze_score_distribution(
         self,
         scores: np.ndarray,
-        actuals: Optional[np.ndarray] = None,
+        actuals: np.ndarray | None = None,
     ) -> pd.DataFrame:
         """
         Analyze the distribution of scores.
@@ -183,7 +185,7 @@ class FeatureScorecard:
 
         return pd.DataFrame(rows)
 
-    def score_applicant(self, features: Dict[str, any]) -> Dict:
+    def score_applicant(self, features: dict[str, any]) -> dict:
         """
         Score a single applicant using the scorecard.
 
